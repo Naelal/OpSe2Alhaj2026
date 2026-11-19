@@ -6,6 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import fileCreatorsAlhaj.ConcreteCreator;
+import fileCreatorsAlhaj.ConcreteCreatortxt;
+import fileCreatorsAlhaj.ReaderCreatorAlhaj;
+import fileCreatorsAlhaj.ReaderProductAlhaj;
+
 public class GetraenkModel {
 	 private Getraenk getraenk;
 
@@ -18,14 +23,25 @@ public class GetraenkModel {
 	 }
 	 
 	 public void leseAusDatei(String typ) throws IOException{
-		 BufferedReader ein = new BufferedReader(new FileReader("Getraenk.csv"));
-		 String[] zeile = ein.readLine().split(";");
+		 ReaderCreatorAlhaj a; 
+		 if ("csv".equalsIgnoreCase(typ)) {
+			 a = new ConcreteCreator(); 
+		 }else {
+			 a = new ConcreteCreatortxt(); 
+		 }
+		 
+		 
+		 
+		 ReaderProductAlhaj b = a.factoryMethod(); 
+		 
+		 
+		 String[] zeile = b.leseAusDatei();
 		 this.getraenk = new Getraenk(zeile[0], 
 			Float.parseFloat(zeile[1]), 
 			Float.parseFloat(zeile[2]), 
 			zeile[3], 
 			zeile[4].split("_"));
-			ein.close();
+			b.schliesseDatei();
 			
 	 }
 	 

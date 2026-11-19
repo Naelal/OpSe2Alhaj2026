@@ -42,15 +42,16 @@ public class GetraenkeControl {
 	
 	public void leseAusDatei(String typ){
 	    	try {
-	    		gm.leseAusDatei(typ);
+	    		
 	      		if("csv".equals(typ)){
-	      			
+	      			gm.leseAusDatei(typ);
 	      	  			gv.zeigeInformationsfensterAn(
 	      	  	   			"Der Getraenk wurde gelesen!");
 	      		}
 	       		else{
+	       			gm.leseAusDatei(typ);
 		   			gv.zeigeInformationsfensterAn(
-		   				"Noch nicht implementiert!");
+		   				"Der Getraenk wurde gelesen!");
 		   		}
 			}
 			catch(IOException exc){
